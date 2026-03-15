@@ -489,7 +489,7 @@
         <div class="card-container" id="cardContainer">
             <div class="card" id="card">
                 <div class="card-face card-back">
-                    <img src="imgs/card-back.png" alt="Рубашка карты">
+                    <img id="cardBackImage" src="imgs/card-back.png" alt="Рубашка карты">
                 </div>
                 <div class="card-face card-front">
                     <span class="category-icon" id="categoryIcon">&#9728;</span>
@@ -693,6 +693,12 @@
             dark: '&#127761;'
         };
 
+        const categoryBacks = {
+            default: 'imgs/card-back.png',
+            sarcastic: 'imgs/card-back-sarcastic.jpg',
+            dark: 'imgs/card-back-dark.jpg'
+        };
+
         const categoryNames = {
             all: 'Карта Дня',
             general: 'Общее послание',
@@ -710,6 +716,7 @@
         const drawBtn = document.getElementById('drawBtn');
         const wishText = document.getElementById('wishText');
         const categoryIcon = document.getElementById('categoryIcon');
+        const cardBackImage = document.getElementById('cardBackImage');
         const cardFooter = document.getElementById('cardFooter');
         const historyBtn = document.getElementById('historyBtn');
         const historyPanel = document.getElementById('historyPanel');
@@ -855,6 +862,9 @@
                 wishText.textContent = currentWish;
                 categoryIcon.innerHTML = categoryIcons[category];
                 cardFooter.textContent = categoryNames[category];
+                if (cardBackImage) {
+                    cardBackImage.src = categoryBacks[category] || categoryBacks.default;
+                }
 
                 // Переворот
                 card.classList.add('flipped');
